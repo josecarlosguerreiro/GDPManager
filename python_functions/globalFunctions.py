@@ -8,8 +8,10 @@ from mysql.connector import errorcode
 
 app = Flask(__name__)
 
+
 class cPlayer:
-    def __init__(self, nome, dta_nasc, alcunha, posicao, ptos_fortes, ptos_fracos, tlm, numCC, nif, morada, codPostal, localidade, numCamisola):
+    def __init__(self, nome, dta_nasc, alcunha, posicao, ptos_fortes, ptos_fracos, tlm, numCC, nif, morada, codPostal,
+                 localidade, numCamisola):
         self.nome = nome
         self.dta_nasc = dta_nasc
         self.alcunha = alcunha
@@ -24,24 +26,25 @@ class cPlayer:
         self.localidade = localidade
         self.numCamisola = numCamisola
 
-#Gets and Sets
+    # Gets and Sets
     def getName(self):
         return self.nome
 
     def setName(self, name):
-        self.name= name
+        self.name = name
 
     def getDtaNasc(self):
         return self.dta_nasc
 
     def setDtaNasc(self, dta_nasc):
-        self.dta_nasc= dta_nasc
+        self.dta_nasc = dta_nasc
 
     def getAlcunha(self, alcunha):
         self.alcunha = alcunha
 
     def setAlcunha(self, alcunha):
         self.alcunha = alcunha
+
     def getPosicao(self):
         return self.posicao
 
@@ -103,12 +106,11 @@ class cPlayer:
         self.numCamisola = numCamisola
 
 
-
-
 def getPlayers():
     res = db.getPlayers()
     for i in res:
         print(i)
+
 
 def login(username, password):
     user_exists = db.checkUsername(username)
@@ -121,23 +123,26 @@ def login(username, password):
         else:
             return None
 
+
 def proxJogo():
     res = db.proxJogo()
-    print(res)
-    print(res[3])
-    if res[3] == 1: #Penela joga em casa
-        infoEqCasa = db.getEquipaInfo(res[3])
-        img_pen = "static/images/PenelaEmblema.jpg"
-        infoEqFora = db.getEquipaInfo(res[4])
-        img_fora = "static/images/clubs/" + infoEqFora[2] + ".jpg"
-        #print(info)
-        data = [res[0], infoEqCasa[2], infoEqFora[2], infoEqCasa[3], img_pen, img_fora]
-    else: #Penela joga fora
-        infoEqCasa = db.getEquipaInfo(res[4])
-        img_casa = "static/images/clubs/" + infoEqCasa[2] + ".jpg"
-        infoEqFora = db.getEquipaInfo(res[3])
-        img_pen = "static/images/PenelaEmblema.jpg"
-        #print(info)
-        data = [res[0], infoEqCasa[2], infoEqFora[2], infoEqCasa[3], img_casa, img_pen]
-
-    return data
+    if res == None:
+        return None
+    else:
+        print(res)
+        print(res[3])
+        if res[3] == 1:  # Penela joga em casa
+            infoEqCasa = db.getEquipaInfo(res[3])
+            img_pen = "static/images/PenelaEmblema.jpg"
+            infoEqFora = db.getEquipaInfo(res[4])
+            img_fora = "static/images/clubs/" + infoEqFora[2] + ".jpg"
+            # print(info)
+            data = [res[0], infoEqCasa[2], infoEqFora[2], infoEqCasa[3], img_pen, img_fora]
+        else:  # Penela joga fora
+            infoEqCasa = db.getEquipaInfo(res[4])
+            img_casa = "static/images/clubs/" + infoEqCasa[2] + ".jpg"
+            infoEqFora = db.getEquipaInfo(res[3])
+            img_pen = "static/images/PenelaEmblema.jpg"
+            # print(info)
+            data = [res[0], infoEqCasa[2], infoEqFora[2], infoEqCasa[3], img_casa, img_pen]
+        return data

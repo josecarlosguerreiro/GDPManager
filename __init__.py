@@ -10,11 +10,18 @@ app = Flask(__name__)
 def home():
     #f.proxJogo()
     data = f.proxJogo()
-    print("@@@@@@@@@@@@")
-    for i in data:
-        print(i)
-    return render_template('index.html', data=data)
+    if data is None:
+        print("Data is None!!!")
+        return render_template('index.html', data=None)
+    else:
+        print("@@@@@@@@@@@@")
+        for i in data:
+            print(i)
+        return render_template('index.html', data=data)
 
+@app.route('/plantel', methods=['GET'])
+def plantel():
+    return render_template('plantel.html', data=None)
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
