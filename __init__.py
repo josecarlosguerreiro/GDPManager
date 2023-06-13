@@ -23,6 +23,10 @@ def home():
 def plantel():
     return render_template('plantel.html', data=None)
 
+@app.route('/sede', methods=['GET'])
+def sede():
+    return render_template('sede.html', data=None)
+
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     # Output em caso de erro

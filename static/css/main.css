@@ -3265,6 +3265,9 @@ figure {
   color: #009541;
 }
 
+iframe {
+     padding: 0px 0px 10px 0px;
+}
 
 .sponsor-section-title{
   font-family: 'Averia Gruesa Libre';
@@ -3313,6 +3316,7 @@ figure {
   .col-3 {
         break-after: page;
   }
+
 }
 
 
