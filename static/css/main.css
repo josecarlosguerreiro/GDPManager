@@ -1675,7 +1675,7 @@
 
 	a {
 		color: #28a745;
-		text-decoration: underline;
+
 	}
 
 		a:hover {
@@ -1750,17 +1750,7 @@
 		margin: 0 0 2em 0;
 	}
 
-	cite {
-		display: block;
-	}
 
-		cite.author {
-			font-weight: 400;
-		}
-
-		cite.company {
-			font-size: .8em;
-		}
 
 	figure {
 		margin: 0 0 2em 0;
@@ -2408,7 +2398,7 @@
 		-webkit-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
 		-ms-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
 		transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
-		background-color: #f6755e;
+		background-color: #FFFFFF;
 		border-radius: 4px;
 		border: 0;
 		color: #28a745;
@@ -3273,13 +3263,22 @@ iframe {
   font-family: 'Averia Gruesa Libre';
   color: #009541;
   display: block;
+  align-middle: middle;
+}
+
+
+.title-section-title{
+  font-family: 'Averia Gruesa Libre';
+  color: #009541;
+  display: block;
   text-align: center;
+}
+
 
 
 .social-icons {
     padding: 10px 10px 10px 10px;
 }
-
 
 /*
 320px-480px: Mobile devices
@@ -3287,35 +3286,23 @@ iframe {
 @media only screen and (max-width: 480px) {
    h2 {
     color: red;
-    text-decoration: underline;
+
   }
 }
 
-
-/*
-481px-768px: Mobile devices
-*/
-@media only screen and (max-width: 768px) {
-  h2 {
-    color: brown;
-    text-decoration: underline;
-  }
-  .col-3 {
-        break-after: page;
-  }
-}
 
 /*
 481px-768px: iPads, Tablets
 */
 @media only screen and (max-width: 768px) {
   h2 {
-    color: green;
-    text-decoration: underline;
+    color: blue;
   }
+
   .col-3 {
         break-after: page;
   }
+
 
 }
 
@@ -3326,7 +3313,7 @@ iframe {
 @media only screen and (max-width: 1024px) {
   h2 {
     color: pink;
-    text-decoration: underline;
+
   }
   .col-3 {
         break-after: page;
@@ -3339,13 +3326,13 @@ iframe {
 @media only screen and (max-width: 1024px) {
   h2 {
     color: orange;
-    text-decoration: underline;
+
   }
 }
 
 @media only screen and (min-width: 1201px) {
   #players-section-title {
     color: black;
-    text-decoration: underline;
+
   }
 }

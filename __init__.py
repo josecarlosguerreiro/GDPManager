@@ -12,7 +12,7 @@ def home():
     data = f.proxJogo()
     if data is None:
         print("Data is None!!!")
-        return render_template('index.html', data=None)
+        return render_template('index.html', data=data)
     else:
         print("@@@@@@@@@@@@")
         for i in data:

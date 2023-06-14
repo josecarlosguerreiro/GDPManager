@@ -126,11 +126,10 @@ def login(username, password):
 
 def proxJogo():
     res = db.proxJogo()
-    if res == None:
+    if res is None:
         return None
     else:
-        print(res)
-        print(res[3])
+        print("RES | " + str(res))
         if res[3] == 1:  # Penela joga em casa
             infoEqCasa = db.getEquipaInfo(res[3])
             img_pen = "static/images/PenelaEmblema.jpg"
@@ -138,6 +137,7 @@ def proxJogo():
             img_fora = "static/images/clubs/" + infoEqFora[2] + ".jpg"
             # print(info)
             data = [res[0], infoEqCasa[2], infoEqFora[2], infoEqCasa[3], img_pen, img_fora]
+            print("DATA | " + str(data))
         else:  # Penela joga fora
             infoEqCasa = db.getEquipaInfo(res[4])
             img_casa = "static/images/clubs/" + infoEqCasa[2] + ".jpg"
@@ -145,4 +145,5 @@ def proxJogo():
             img_pen = "static/images/PenelaEmblema.jpg"
             # print(info)
             data = [res[0], infoEqCasa[2], infoEqFora[2], infoEqCasa[3], img_casa, img_pen]
+            print("DATA FORA | " + str(data))
         return data

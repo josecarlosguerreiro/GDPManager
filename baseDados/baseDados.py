@@ -1,5 +1,5 @@
 import mysql.connector
-
+from mysql.connector import errorcode
 
 '''
 def connect():
@@ -19,11 +19,17 @@ def connect():
         mydb = mysql.connector.connect(user='jguerreiro', password='2111986kramermania',
                                        host='192.168.1.72',
                                        port='3306',
-                                       database='takuki')
+                                       database='gdpenela_tst')
         return mydb
-    except:
-        print("Erro ao aceder base dados.")
-        return None
+    except mysql.connector.Error as err:
+        if err.errno == errorcode.ER_ACCESS_DENIED_ERROR:
+            print("Something is wrong with your user name or password")
+        elif err.errno == errorcode.ER_BAD_DB_ERROR:
+            print("Database does not exist")
+        else:
+            print(err)
+    else:
+        return mydb
 
 def disconnect(connection):
     try:
@@ -128,15 +134,17 @@ def getPlayers():
 
 def proxJogo():
     try:
-        conn = connect()
-        mycursor = conn.cursor()
-        mycursor.execute("select min(j.dta_jogo), j.* from jogo j\
+        cnx = connect()
+        cur = cnx.cursor()
+        query_string = "select min(j.dta_jogo), j.* from jogo j\
                         where j.dta_jogo >=sysdate()\
-                          and (j.id_eq_casa = 1 or j.id_eq_fora = 1 );")
-        result = mycursor.fetchone()
-        disconnect(conn)
-        return result
+                          and (j.id_eq_casa = 1 or j.id_eq_fora = 1 )"
+        cur.execute(query_string)
+        data = cur.fetchall()
+        dta = data[0]
+        return dta
     except:
+        print("ERROR")
         return None
 
 def getEquipaInfo(id_eq):
@@ -145,7 +153,7 @@ def getEquipaInfo(id_eq):
         mycursor = conn.cursor()
         sql = "select * from equipas where id = " + str(id_eq)
         print(sql)
-        print("OLA")
+
         mycursor.execute(sql)
         result = mycursor.fetchone()
         disconnect(conn)
