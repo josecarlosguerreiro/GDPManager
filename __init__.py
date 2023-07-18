@@ -14,6 +14,7 @@ def home():
         print("Data is None!!!")
         return render_template('index.html', data=data)
     else:
+        print("@@@@@@@@@@@@")
         for i in data:
             print(i)
         return render_template('index.html', data=data)
