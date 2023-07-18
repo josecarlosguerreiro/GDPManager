@@ -11,7 +11,7 @@
 			<div class="flex-item left">
 				<div>
 					<h3>
-						<a href="/sede">Sede</a>
+						<a href="/clube">O Clube</a>
 					</h3>
 					<p>Informacoes sobre a sede do Grupo Desportivo de Penela e contactos</p>
 				</div>
@@ -25,7 +25,7 @@
 			</div>
 			<div class="flex-item right">
 				<div>
-					<h3><a href="/plantel">Direcao, Equipa tecnica e Plantel 2023/2024</a></h3>
+					<h3><a href="/eqTecnicaPlantel">Equipa tecnica e Plantel 2023/2024</a></h3>
 					<p>Plantel para a época 2023/2024<br/></p>
 				</div>
 				<div>
@@ -85,7 +85,7 @@
 	</section>
 	{% endif %}
 
-
+	<!--
 	<section id="sponser" class="wrapper">
 		<div class="row">
 			<div class="col-sm-12">
@@ -116,11 +116,12 @@
 							<img class="img-fluid" alt="" src="static/images/sponsor/bombocas.png">
 						</a>
 					</figure>
-				</a>
         	</div>
 			<div class="col-sm-3">
         	</div>
 		</div>
 	</section>
+	-->
 
+	{% include 'sponsors.html' %}
 	{% include 'footer.html' %}

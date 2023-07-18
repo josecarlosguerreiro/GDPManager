@@ -22,9 +22,26 @@ def home():
 def plantel():
     return render_template('plantel.html', data=None)
 
+@app.route('/eqTecnica', methods=['GET'])
+def eqTecnica():
+    return render_template('eqTecnica.html', data=None)
+
 @app.route('/sede', methods=['GET'])
 def sede():
     return render_template('sede.html', data=None)
+
+@app.route('/clube', methods=['GET'])
+def clube():
+    return render_template('clube.html', data=None)
+
+
+@app.route('/direcao', methods=['GET'])
+def direcao():
+    return render_template('direcao.html', data=None)
+
+@app.route('/eqTecnicaPlantel', methods=['GET'])
+def eqTecnicaPlantel():
+    return render_template('eqTecnicaPlantel.html', data=None)
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
