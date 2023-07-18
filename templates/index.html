@@ -40,7 +40,7 @@
 	</section>
 
 
-		{% if data != None %}
+	{% if data != None %}
 	<section id="jogo" class="wrapper">
 		<div class="container">
 			<div class="row">
@@ -49,36 +49,6 @@
 					<h3 class="title-section-title">{{data[0]}}</h3>
 					<h6 class="title-section-title">Campo de {{data[3]}}<br>09:45</h6>
 				</div>
-			</div>
-			<div class="row">
-				<div class="col-sm-1">
-
-				</div>
-				<div class="col-sm-5">
-					<figure>
-					  <img class="img-fluid" alt="" src="static/images/clubs/new/penela.png">
-						<figcaption>
-							<div class="player-number">{{data[1]}}</div>
-						</figcaption>
-					</figure>
-
-				</div>
-				<!--
-				<div class="col-sm-1 row align-middle">
-
-					<h4 class="text-uppercase">vs</h4>
-
-				</div>
-				-->
-				<div class="col-sm-5">
-					<figure>
-					  <img class="img-fluid" alt="" src="static/images/clubs/new/jacares.png">
-						<figcaption>
-							<div class="player-number">{{data[1]}}</div>
-						</figcaption>
-					</figure>
-				</div>
-				<div class="col-sm-1"></div>
 			</div>
 			<div class="row">
 				<div class="col-sm-1">
@@ -113,7 +83,7 @@
 		</div>
 
 	</section>
-		{% endif %}
+	{% endif %}
 
 
 	<section id="sponser" class="wrapper">
@@ -122,6 +92,7 @@
 				<h2 class="title-section-title">PATROCINADORES</h2>
 			</div>
         	<div class="col-sm-3">
+				<a class="sponsor">
 					<figure>
 						<a href="https://www.remax.pt/agente/sergio-rebelo/123001034" rel="noopener noreferrer" class="div sponser-img" target="_blank">
 							<img class="img-fluid" alt="" src="static/images/sponsor/SergioRebeloRemax.png">
@@ -129,6 +100,7 @@
 					</figure>
         	</div>
 			<div class="col-sm-3">
+				<a class="sponsor">
 					<figure>
 						<a href="https://www.ecofirma.pt" rel="noopener noreferrer" class="div sponser-img" target="_blank">
 							<img class="img-fluid" alt="" src="static/images/sponsor/ecofirma.png">
@@ -136,6 +108,7 @@
 					</figure>
         	</div>
 			<div class="col-sm-3">
+				<a class="sponsor">
 					<figure>
 						<a href="https://www.facebook.com/p/Bombocas-de-Adaúfe-100027756741673/?paipv=0&eav=AfbVRaiw4tMPhWWJXdb31G0h018I6mnj3GawVQBfNV5CiQIXlDW-RrheUAJB8flJft4&_rdr" rel="noopener noreferrer" class="div sponser-img" target="_blank">
 							<img class="img-fluid" alt="" src="static/images/sponsor/bombocas.png">
