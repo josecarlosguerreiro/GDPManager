@@ -3340,3 +3340,7 @@ iframe {
 .center {
          padding: 120px 0;
 }
+
+.center-text-div {
+    text-align: center;
+}

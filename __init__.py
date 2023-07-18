@@ -43,6 +43,10 @@ def direcao():
 def eqTecnicaPlantel():
     return render_template('eqTecnicaPlantel.html', data=None)
 
+@app.route('/calendario', methods=['GET'])
+def calendario():
+    return render_template('calendario.html', data=None)
+
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     # Output em caso de erro

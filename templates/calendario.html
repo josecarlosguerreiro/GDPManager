@@ -1,0 +1,54 @@
+{% include 'header.html' %}
+
+<section>
+    <div class="container mt-5">
+      <div class="row">
+          <div class="col-sm-12">
+            <h2 class="players-section-title">Calendario 2023/2024</h2>
+              <h2 class="players-section-title">ver pagina do benfica</h2>
+              <h2 class="players-section-title">dividir jogos por meses</h2>
+          </div>
+      </div>
+    </div>
+
+    <section id="jogo" class="wrapper">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-12">
+					<h2 class="title-section-title">SETEMBRO</h2>
+				</div>
+			</div>
+			<div class="row">
+
+				<div class="col-sm-5">
+					<figure>
+					  <img class="img-fluid" alt="" src="static/images/clubs/penela.png">
+						<figcaption>
+							<div class="player-number">{{data[1]}}</div>
+						</figcaption>
+					</figure>
+				</div>
+                <div class="col-sm-2">
+					<h3 class="align-middle">data[0]</h3>
+					<h6 class="align-middle">Campo de {{data[3]}}<br>09:45</h6>
+                </div>
+				<div class="col-sm-5">
+					<figure>
+					  <img class="img-fluid" alt="" src="static/images/clubs/jacares.png">
+						<figcaption>
+							<div class="player-number">{{data[2]}}</div>
+						</figcaption>
+					</figure>
+				</div>
+				<div class="col-sm-1"></div>
+			</div>
+		</div>
+
+</section>
+<section>
+    <div class="center">
+        <button onclick="history.back()">Go Back</button>
+    </div>
+</section>
+
+{% include 'footer.html' %}
