@@ -51,12 +51,10 @@
 				</div>
 			</div>
 			<div class="row">
-				<div class="col-sm-1">
-
-				</div>
+				<div class="col-sm-1"></div>
 				<div class="col-sm-5">
 					<figure>
-					  <img class="img-fluid" alt="" src="static/images/clubs/penela.png">
+					  <img class="img-fluid" alt="" src={{data[4]}}>
 						<figcaption>
 							<div class="player-number">{{data[1]}}</div>
 						</figcaption>
@@ -72,7 +70,7 @@
 				-->
 				<div class="col-sm-5">
 					<figure>
-					  <img class="img-fluid" alt="" src="static/images/clubs/jacares.png">
+					  <img class="img-fluid" alt="" src={{data[5]}}>
 						<figcaption>
 							<div class="player-number">{{data[2]}}</div>
 						</figcaption>
@@ -84,44 +82,6 @@
 
 	</section>
 	{% endif %}
-
-	<!--
-	<section id="sponser" class="wrapper">
-		<div class="row">
-			<div class="col-sm-12">
-				<h2 class="title-section-title">PATROCINADORES</h2>
-			</div>
-        	<div class="col-sm-3">
-				<a class="sponsor">
-					<figure>
-						<a href="https://www.remax.pt/agente/sergio-rebelo/123001034" rel="noopener noreferrer" class="div sponser-img" target="_blank">
-							<img class="img-fluid" alt="" src="static/images/sponsor/SergioRebeloRemax.png">
-						</a>
-					</figure>
-				</a>
-        	</div>
-			<div class="col-sm-3">
-				<a class="sponsor">
-					<figure>
-						<a href="https://www.ecofirma.pt" rel="noopener noreferrer" class="div sponser-img" target="_blank">
-							<img class="img-fluid" alt="" src="static/images/sponsor/ecofirma.png">
-						</a>
-					</figure>
-				</a>
-        	</div>
-			<div class="col-sm-3">
-				<a class="sponsor">
-					<figure>
-						<a href="https://www.facebook.com/p/Bombocas-de-Adaúfe-100027756741673/?paipv=0&eav=AfbVRaiw4tMPhWWJXdb31G0h018I6mnj3GawVQBfNV5CiQIXlDW-RrheUAJB8flJft4&_rdr" rel="noopener noreferrer" class="div sponser-img" target="_blank">
-							<img class="img-fluid" alt="" src="static/images/sponsor/bombocas.png">
-						</a>
-					</figure>
-        	</div>
-			<div class="col-sm-3">
-        	</div>
-		</div>
-	</section>
-	-->
 
 	{% include 'sponsors.html' %}
 	{% include 'footer.html' %}
