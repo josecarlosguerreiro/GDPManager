@@ -8,14 +8,13 @@ app = Flask(__name__)
 
 @app.route('/')
 def home():
+    f.inserePlantel()
     #f.proxJogo()
     data = f.proxJogo()
     if data is None:
         print("Data is None!!!")
-        return render_template('index.html', data=data)
+        return render_template('index.html', data=None)
     else:
-        for i in data:
-            print(i)
         return render_template('index.html', data=data)
 
 @app.route('/plantel', methods=['GET'])

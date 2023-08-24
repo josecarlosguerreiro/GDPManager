@@ -123,27 +123,32 @@ def login(username, password):
         else:
             return None
 
-
 def proxJogo():
     res = db.proxJogo()
     if res is None:
+        print("RES IS NONE")
         return None
     else:
-        print("RES | " + str(res))
-        if res[3] == 1:  # Penela joga em casa
-            infoEqCasa = db.getEquipaInfo(res[3])
-            img_pen = "static/images/PenelaEmblema.jpg"
-            infoEqFora = db.getEquipaInfo(res[4])
-            img_fora = "static/images/clubs/" + infoEqFora[2] + ".jpg"
-            # print(info)
-            data = [res[0], infoEqCasa[2], infoEqFora[2], infoEqCasa[3], img_pen, img_fora]
-            print("DATA | " + str(data))
-        else:  # Penela joga fora
-            infoEqCasa = db.getEquipaInfo(res[4])
-            img_casa = "static/images/clubs/" + infoEqCasa[2] + ".jpg"
-            infoEqFora = db.getEquipaInfo(res[3])
-            img_pen = "static/images/PenelaEmblema.jpg"
-            # print(info)
-            data = [res[0], infoEqCasa[2], infoEqFora[2], infoEqCasa[3], img_casa, img_pen]
-            print("DATA FORA | " + str(data))
+        eq_casa = res[3]
+        print("eq casa: " + str(eq_casa) )
+        eq_visitante = res[4]
+        #print("eq_visitante: " + str(eq_visitante))
+        infoEqCasa = db.getEquipaInfo(eq_casa)
+        #print("infoCasa --> " + str(infoEqCasa))
+        #print("########################################")
+        img_eq_casa = "static/images/clubs/" +  infoEqCasa[6]
+        infoEqFora = db.getEquipaInfo(res[4])
+        #print("infoEqFora --> " + str(infoEqFora))
+        img_eq_fora = "static/images/clubs/" + infoEqFora[6]
+        # print(info)
+        data = [res[0], infoEqCasa[2], infoEqFora[2], infoEqCasa[3], img_eq_casa, img_eq_fora]
+        #print("DATA | " + str(data))
         return data
+
+def inserePlantel():
+    lista_jog = db.getPlayers()
+    for jog in lista_jog:
+        res = db.criarPlantel(jog[0])
+        print(res)
+        print("OLAAAA")
+        print(jog[0])

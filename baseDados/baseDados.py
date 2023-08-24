@@ -132,6 +132,21 @@ def getPlayers():
     except:
         return None
 
+def criarPlantel(id_jog):
+    try:
+        conn = connect()
+        mycursor = conn.cursor()
+        print("bla2222111")
+        sql = "insert into plantel (id_jogador, epoca) values (%s,2023-2024)"
+        print(sql)
+        print("after sql")
+        mycursor.execute(sql, id_jog)
+        conn.commit()
+        print(mycursor.rowcount, "record inserted.")
+        disconnect(conn)
+    except:
+        return None
+
 def proxJogo():
     try:
         cnx = connect()
@@ -142,6 +157,7 @@ def proxJogo():
         cur.execute(query_string)
         data = cur.fetchall()
         dta = data[0]
+        print("--> data" + str(dta))
         return dta
     except:
         print("ERROR")
