@@ -3,9 +3,11 @@ import baseDados.baseDados as db
 
 def readFile():
     try:
-        print("Opening " + 'B8EBF940.csv')
-        f1 = open('B8EBF940.csv', 'r')
+        print("Opening " + 'calendario.csv')
+        f1 = open('calendario.csv', 'r')
+        print(f1)
         lines = f1.readlines()
+        print("hello")
         f1.close()
         return lines
     except:
@@ -56,7 +58,7 @@ def epoca(lines):
 def insertEpoca(id_jogo):
     conn = db.connect()
     mycursor = conn.cursor()
-    sql = "insert into epoca(id_jogo, ano) values( '" + str(id_jogo) + "', '2022-2023')"
+    sql = "insert into epoca(id_jogo, ano) values( '" + str(id_jogo) + "', '2023-2024')"
     print(sql)
     mycursor.execute(sql)
     conn.commit()
