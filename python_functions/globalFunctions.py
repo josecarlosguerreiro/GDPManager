@@ -125,24 +125,41 @@ def login(username, password):
 
 def proxJogo():
     res = db.proxJogo()
+    print(res)
+    #for i, r in enumerate(res):
+    #    print(i)
     if res is None:
         print("RES IS NONE")
         return None
     else:
-        eq_casa = res[3]
-        print("eq casa: " + str(eq_casa) )
-        eq_visitante = res[4]
-        #print("eq_visitante: " + str(eq_visitante))
+        eq_casa = res[2]
+        eq_fora = res[3]
+        dta_jogo = res[7]
+
+        if eq_casa == 15 or eq_fora == 15: #Folga
+            proxJornada = int(res[1]) + 1
+            prox = db.aposFolga(proxJornada)
+            eq_casa = prox[2]
+            eq_fora = prox[3]
+            dta_jogo = prox[7]
+
+        print("eq casa: " + str(eq_casa))
         infoEqCasa = db.getEquipaInfo(eq_casa)
-        #print("infoCasa --> " + str(infoEqCasa))
-        #print("########################################")
-        img_eq_casa = "static/images/clubs/" +  infoEqCasa[6]
-        infoEqFora = db.getEquipaInfo(res[4])
-        #print("infoEqFora --> " + str(infoEqFora))
+        print("infoCasa --> " + str(infoEqCasa))
+        img_eq_casa = "static/images/clubs/" + infoEqCasa[6]
+        print(img_eq_casa)
+        print("########################################")
+
+
+        print("eq casa: " + str(eq_fora))
+        infoEqFora = db.getEquipaInfo(eq_fora)
+        print("infoCasa --> " + str(infoEqFora))
         img_eq_fora = "static/images/clubs/" + infoEqFora[6]
-        # print(info)
-        data = [res[0], infoEqCasa[2], infoEqFora[2], infoEqCasa[3], img_eq_casa, img_eq_fora]
-        #print("DATA | " + str(data))
+        print(img_eq_fora)
+        print("########################################")
+
+        data = [dta_jogo, infoEqCasa[2], infoEqFora[2], infoEqCasa[3], img_eq_casa, img_eq_fora, ]
+        print("DATA | " + str(data))
         return data
 
 def inserePlantel():
