@@ -4,13 +4,14 @@ from mysql.connector import errorcode
 
 def connect():
     try:
-        mydb = mysql.connector.connect(user='root', password='2111986kramermania',
+        mydb = mysql.connector.connect(user='jguerreiro', password='2111986kramermania',
                                        host='127.0.0.1',
                                        database='gdpenela_tst')
         return mydb
     except:
         print("Erro ao aceder base dados.")
         return None
+
 
 '''
 
@@ -31,6 +32,8 @@ def connect():
     else:
         return mydb
 '''
+
+
 def disconnect(connection):
     try:
         connection.close()
@@ -39,18 +42,20 @@ def disconnect(connection):
         print("Cannot close db")
         return -1
 
+
 def login(username, password):
     try:
         conn = connect()
         mycursor = conn.cursor()
         sql = "select * from users where username = '%s' and pass = '%s' and ativo = 'S'" % (username, password)
-        #print(sql)
+        # print(sql)
         mycursor.execute(sql)
         result = mycursor.fetchone()
         disconnect(conn)
         return result
     except:
         return None
+
 
 def checkUsername(username):
     try:
@@ -62,6 +67,7 @@ def checkUsername(username):
         return result
     except:
         return None
+
 
 def registerUser(username, password, email):
     argsList = [username, password, email]
@@ -83,8 +89,6 @@ def registerUser(username, password, email):
         print("End of error")
         print("#############################")
     return None
-
-
 
 
 def insertGame(country, league, season, game_date, round, home_team, away_team, realized):
@@ -111,7 +115,6 @@ def insertGame(country, league, season, game_date, round, home_team, away_team, 
         print("#############################")
 
 
-
 def getActiveUsers():
     try:
         conn = connect()
@@ -122,7 +125,6 @@ def getActiveUsers():
         return result
     except:
         return None
-
 
 
 def getPlantel(epoca):
@@ -138,6 +140,7 @@ def getPlantel(epoca):
     except:
         return None
 
+
 def criarPlantel(id_jog, epoca):
     try:
         conn = connect()
@@ -151,8 +154,10 @@ def criarPlantel(id_jog, epoca):
     except:
         return None
 
-def adicionaJogador(nome_completo, nome, dta_nasc, posicao, num_pos, telemovel, num_camisola, last_updated_date, username):
-    argsList = [nome_completo, nome, dta_nasc, posicao, num_pos, telemovel,  num_camisola, last_updated_date, username]
+
+def adicionaJogador(nome_completo, nome, dta_nasc, posicao, num_pos, telemovel, num_camisola, last_updated_date,
+                    username):
+    argsList = [nome_completo, nome, dta_nasc, posicao, num_pos, telemovel, num_camisola, last_updated_date, username]
     try:
         conn = connect()
         mycursor = conn.cursor()
@@ -202,6 +207,7 @@ def procuraJogadorPlantel(id_jog, epoca):
     except:
         return None
 
+
 def adiciona_jogador_plantel(id_jog, epoca, username, data):
     argsList = [id_jog, epoca, data, username]
     try:
@@ -224,7 +230,6 @@ def adiciona_jogador_plantel(id_jog, epoca, username, data):
 
 
 def removeJogadorPlantel(id_jog, epoca, username, hoje):
-
     try:
         conn = connect()
         mycursor = conn.cursor()
@@ -242,18 +247,32 @@ def proxJogo():
     try:
         cnx = connect()
         cur = cnx.cursor()
-        query_string = "select min(j.dta_jogo), j.* from jogo j\
-                        where j.dta_jogo >=sysdate()\
-                          and (j.id_eq_casa = 1 or j.id_eq_fora = 1 )"
+        query_string = "select j.* from jogo j " \
+                       "where j.dta_jogo = (select min(j.dta_jogo) from jogo j \
+						                    where j.dta_jogo >= (select date_format(sysdate(), '%d-%m-%Y')) \
+                                            ) \
+				        and (j.id_eq_casa = 1 or j.id_eq_fora = 1 );"
         cur.execute(query_string)
-        data = cur.fetchall()
-        dta = data[0]
-        print("--> data" + str(dta))
-        return dta
+        jogo = cur.fetchone()
+        print("--> jogo" + str(jogo))
+        return jogo
     except:
         print("ERROR")
         return None
 
+def aposFolga(proxJornada):
+    print("APOSFOLGA")
+    try:
+        cnx = connect()
+        cur = cnx.cursor()
+        query_string = "select j.* from jogo j where j.jornada = '%s' and (j.id_eq_casa = 1 or " \
+                        "j.id_eq_fora = 1 );" % proxJornada
+        cur.execute(query_string)
+        jogo = cur.fetchone()
+        return jogo
+    except:
+        print("ERROR!!!")
+        return None
 def getEquipaInfo(id_eq):
     try:
         conn = connect()
@@ -267,6 +286,7 @@ def getEquipaInfo(id_eq):
         return result
     except:
         return None
+
 
 def setTreino(campo, data_treino, meteo, tipo_treino, epoca, update_date, update_by):
     argsList = [campo, data_treino, meteo, tipo_treino, epoca, update_date, update_by]
@@ -306,11 +326,13 @@ def listaTreinos(epoca):
     except:
         return None
 
+
 def remTreino(id_treino, username, hoje):
     try:
         conn = connect()
         mycursor = conn.cursor()
-        sql = "update treino_base set activo = 'N', last_updated_date = '%s', last_updated_by = '%s' where id = %s" % (hoje, username, id_treino)
+        sql = "update treino_base set activo = 'N', last_updated_date = '%s', last_updated_by = '%s' where id = %s" % (
+        hoje, username, id_treino)
         mycursor.execute(sql)
         conn.commit()
         disconnect(conn)
@@ -332,6 +354,8 @@ def atualizaTreino(id_treino, change_date, username, campo, data, metereologia, 
         return 0
     except:
         return -1
+
+
 def adicionaJogadorTreino(id_treino, id_jogador, presente, avaliacao, comentario, update_date, update_by):
     argsList = [id_treino, id_jogador, presente, avaliacao, comentario, update_date, update_by]
     try:
@@ -352,6 +376,7 @@ def adicionaJogadorTreino(id_treino, id_jogador, presente, avaliacao, comentario
 
     except:
         print("Database error adicionaJogadorTreino: %s" % result_args)
+
 
 def listarJogadoresPresentesTreino(id_treino):
     try:
@@ -374,7 +399,7 @@ def getJogosTodos(epoca):
         mycursor = conn.cursor()
         sql = "select j.jornada, eq_casa.nome, j.golos_eq_casa , eq_fora.nome, j.golos_eq_fora  from jogo j , " \
               "equipas eq_casa, equipas eq_fora, epoca e where j.id_eq_casa = eq_casa.id and j.id_eq_fora = " \
-              "eq_fora.id and e.ano = '%s' order by j.jornada asc" % epoca
+              "eq_fora.id and j.id = e.id_jogo and e.ano = '%s' order by j.jornada asc" % epoca
         mycursor.execute(sql)
         result = mycursor.fetchall()
         disconnect(conn)
