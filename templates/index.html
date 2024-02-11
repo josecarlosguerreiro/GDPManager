@@ -1,87 +1,85 @@
 {% include 'header.html' %}
 
-	<section id="banner">
-		<div class="content">
-			<p>#Raça #Querer #Ambição</p>
-		</div>
-	</section>
+<section id="banner">
+    <div class="content">
+        <p>#Raça #Querer #Ambição</p>
+    </div>
+</section>
 
-	<section id="one" class="wrapper">
-		<div class="inner flex flex-3">
-			<div class="flex-item left">
-				<div>
-					<h3>
-						<a href="/clube">O Clube</a>
-					</h3>
-					<p>Informacoes sobre a sede do Grupo Desportivo de Penela e contactos</p>
-				</div>
-				<div>
-					<h3><a href="/sede">Contactos</a></h3>
-					<p>Informacoes sobre a sede do Grupo Desportivo de Penela e contactos</p>
-				</div>
-			</div>
-			<div class="flex-item image fit round">
-				<img src="static/images/PenelaEmblema.jpg" alt="" />
-			</div>
-			<div class="flex-item right">
-				<div>
-					<h3><a href="/eqTecnicaPlantel">Equipa tecnica e Plantel 2023/2024</a></h3>
-					<p>Plantel para a época 2023/2024<br/></p>
-				</div>
-				<div>
-					<h3>
-						<a href="/calendario">Calendário</a>
-					</h3>
-					<p>Calendario desportivo da epoca 2019/2020 de forma a acompanhar todos os jogos</p>
-				</div>
-			</div>
-		</div>
+<section id="one" class="wrapper">
+    <div class="inner flex flex-3">
+        <div class="flex-item left">
+            <div>
+                <h3><a href="/clube">O Clube</a></h3>
+                <p>Informações sobre a sede do Grupo Desportivo de Penela e contatos</p>
+            </div>
+            <div>
+                <h3><a href="/sede">Contactos</a></h3>
+                <p>Informações sobre a sede do Grupo Desportivo de Penela e contatos</p>
+            </div>
+        </div>
+        <div class="flex-item image fit round">
+            <img src="static/images/PenelaEmblema.jpg" alt="">
+        </div>
+        <div class="flex-item right">
+            <div>
+                <h3><a href="/eqTecnicaPlantel">Equipa técnica e Plantel 2023/2024</a></h3>
+                <p>Plantel para a época 2023/2024</p>
+            </div>
+            <div>
+                <h3><a href="/calendario">Calendário</a></h3>
+                <p>Calendário desportivo da época 2019/2020 para acompanhar todos os jogos</p>
+            </div>
+        </div>
+    </div>
+</section>
 
-	</section>
+{% if data != None %}
+<section id="jogo" class="wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <h2 class="title-section-title">PRÓXIMO JOGO</h2>
+                <h3 class="title-section-title">{{data[0]}}</h3>
+                <h6 class="title-section-title">Campo de {{data[3]}}<br>09:45</h6>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-1"></div>
+            <div class="col-sm-5">
+                <figure>
+                    <img class="img-fluid" alt="" src="{{data[4]}}">
+                    <figcaption>
+                        <div class="player-number">{{data[1]}}</div>
+                    </figcaption>
+                </figure>
+            </div>
+            <div class="col-sm-5">
+                <figure>
+                    <img class="img-fluid" alt="" src="{{data[5]}}">
+                    <figcaption>
+                        <div class="player-number">{{data[2]}}</div>
+                    </figcaption>
+                </figure>
+            </div>
+            <div class="col-sm-1"></div>
+        </div>
+    </div>
+</section>
+{% endif %}
 
+{% if data == None %}
+<section id="folga" class="wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <h2 class="title-section-title">Esta semana estamos de folga.</h2>
+                <h3 class="title-section-title">Voltaremos a jogar na próxima semana.</h3>
+            </div>
+        </div>
+    </div>
+</section>
+{% endif %}
 
-	{% if data != None %}
-	<section id="jogo" class="wrapper">
-		<div class="container">
-			<div class="row">
-				<div class="col-sm-12">
-					<h2 class="title-section-title">PROXIMO JOGO</h2>
-					<h3 class="title-section-title">{{data[0]}}</h3>
-					<h6 class="title-section-title">Campo de {{data[3]}}<br>09:45</h6>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-sm-1"></div>
-				<div class="col-sm-5">
-					<figure>
-					  <img class="img-fluid" alt="" src={{data[4]}}>
-						<figcaption>
-							<div class="player-number">{{data[1]}}</div>
-						</figcaption>
-					</figure>
-
-				</div>
-				<!--
-				<div class="col-sm-1 row align-middle">
-
-					<h4 class="text-uppercase">vs</h4>
-
-				</div>
-				-->
-				<div class="col-sm-5">
-					<figure>
-					  <img class="img-fluid" alt="" src={{data[5]}}>
-						<figcaption>
-							<div class="player-number">{{data[2]}}</div>
-						</figcaption>
-					</figure>
-				</div>
-				<div class="col-sm-1"></div>
-			</div>
-		</div>
-
-	</section>
-	{% endif %}
-
-	{% include 'sponsors.html' %}
-	{% include 'footer.html' %}
+{% include 'sponsors.html' %}
+{% include 'footer.html' %}
